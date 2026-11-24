@@ -21,13 +21,14 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            background: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.22), transparent 55%),
-                        radial-gradient(circle at 85% 25%, rgba(192, 132, 252, 0.24), transparent 55%),
+            background: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.24), transparent 55%),
+                        radial-gradient(circle at 85% 25%, rgba(192, 132, 252, 0.26), transparent 55%),
                         linear-gradient(rgba(8, 3, 18, 0.85), rgba(4, 2, 10, 0.96)),
-                        url('https://photos.pinksale.finance/file/pinksale-logo-upload/1790375348672-4de629a77b910ca4b3f245dda1b233f0.png');
+                        url('https://photos.pinksale.finance/file/pinksale-logo-upload/1790285851823-4955b8f5511ea8235af22dfb82371c91.png');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -154,11 +155,6 @@
             box-shadow: 0 0 12px rgba(192, 132, 252, 0.35);
         }
 
-        .btn-sound:hover {
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 16px rgba(34, 211, 238, 0.55);
-        }
-
         .btn-wallet {
             background: linear-gradient(135deg, #10b981, #22d3ee);
             color: #041014;
@@ -190,18 +186,14 @@
 
         .hidden { display: none !important; }
 
-        /* BIENVENIDA IMPACIANTE */
+        /* BIENVENIDA */
         #screenWelcome {
             justify-content: center;
             min-height: calc(100vh - 76px);
         }
 
         .welcome-card-box {
-            background: linear-gradient(165deg, rgba(22, 10, 48, 0.94), rgba(10, 4, 24, 0.97)),
-                        url('https://photos.pinksale.finance/file/pinksale-logo-upload/1791494105996-e3366dcac4d9846d38bbb175e71b1538.png');
-            background-size: cover;
-            background-position: center;
-            background-blend-mode: overlay;
+            background: linear-gradient(165deg, rgba(22, 10, 48, 0.94), rgba(10, 4, 24, 0.97));
             border: 2px solid var(--neon-cyan);
             border-radius: 22px;
             padding: 40px 36px;
@@ -229,8 +221,8 @@
         }
 
         .floating-logo {
-            width: 112px;
-            height: 112px;
+            width: 118px;
+            height: 118px;
             border-radius: 50%;
             border: 3px solid var(--neon-cyan);
             object-fit: cover;
@@ -272,9 +264,7 @@
             box-shadow: inset 0 0 18px rgba(34, 211, 238, 0.08);
         }
 
-        .rules-list-welcome li {
-            margin-bottom: 8px;
-        }
+        .rules-list-welcome li { margin-bottom: 8px; }
 
         .btn-action {
             display: block;
@@ -412,9 +402,7 @@
             padding: 14px;
         }
 
-        .stat-item {
-            text-align: center;
-        }
+        .stat-item { text-align: center; }
 
         .stat-label {
             font-size: 0.76rem;
@@ -435,14 +423,13 @@
             text-shadow: 0 0 12px rgba(244, 114, 182, 0.65);
         }
 
-        /* TABLERO DE MEMORIA 3D */
+        /* TABLERO DE MEMORIA A PRUEBA DE MÓVIL */
         .memory-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
+            gap: 12px;
             max-width: 720px;
             margin: 0 auto 20px auto;
-            perspective: 1000px;
         }
 
         .memory-grid.cols-3 {
@@ -456,7 +443,7 @@
         }
 
         @media (max-width: 600px) {
-            .memory-grid { gap: 9px; }
+            .memory-grid { gap: 8px; }
             .memory-grid.cols-6 { grid-template-columns: repeat(4, 1fr); }
         }
 
@@ -464,73 +451,91 @@
             aspect-ratio: 1 / 1;
             position: relative;
             cursor: pointer;
-            transform-style: preserve-3d;
-            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
             border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid var(--neon-cyan);
+            background: linear-gradient(145deg, #1b0c38, #0b0518);
+            box-shadow: 0 0 16px rgba(34, 211, 238, 0.35);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
         }
 
-        .mem-card.flipped, .mem-card.matched {
-            transform: rotateY(180deg);
+        .mem-card:active {
+            transform: scale(0.95);
         }
 
-        .mem-card.matched {
-            box-shadow: 0 0 24px rgba(52, 211, 153, 0.9), 0 0 12px rgba(34, 211, 238, 0.7);
-            border-radius: 14px;
-        }
-
-        .mem-card.miss-shake {
-            animation: cardShake 0.35s ease;
-        }
-
-        @keyframes cardShake {
-            0%, 100% { transform: rotateY(180deg) translateX(0); }
-            25% { transform: rotateY(180deg) translateX(-6px); }
-            75% { transform: rotateY(180deg) translateX(6px); }
-        }
-
-        .mem-face {
+        .mem-face-back, .mem-face-front {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            backface-visibility: hidden;
-            border-radius: 14px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: opacity 0.28s ease, transform 0.32s ease;
         }
 
-        .mem-back {
-            background: linear-gradient(145deg, #1b0c38, #0b0518);
-            border: 2px solid var(--neon-cyan);
-            box-shadow: 0 0 16px rgba(34, 211, 238, 0.4), inset 0 0 12px rgba(192, 132, 252, 0.3);
+        .mem-face-back {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
         }
 
-        .mem-back img {
+        .mem-face-back img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
 
-        .mem-card:hover:not(.flipped):not(.matched) .mem-back {
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 24px rgba(244, 114, 182, 0.75);
+        .mem-face-front {
+            opacity: 0;
+            transform: scale(0.84);
+            z-index: 1;
+            background: radial-gradient(circle, rgba(46, 16, 101, 0.96), rgba(12, 6, 26, 0.99));
+            padding: 5px;
         }
 
-        .mem-front {
-            transform: rotateY(180deg);
-            background: radial-gradient(circle, rgba(46, 16, 101, 0.95), rgba(12, 6, 26, 0.98));
-            border: 2px solid var(--neon-purple);
-            box-shadow: 0 0 20px rgba(192, 132, 252, 0.6);
-            padding: 6px;
-        }
-
-        .mem-front img {
+        .mem-face-front img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 10px;
+            display: block;
+        }
+
+        /* Estado volteado o acertado */
+        .mem-card.flipped .mem-face-back,
+        .mem-card.matched .mem-face-back {
+            opacity: 0;
+            transform: scale(0.84);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .mem-card.flipped .mem-face-front,
+        .mem-card.matched .mem-face-front {
+            opacity: 1;
+            transform: scale(1);
+            z-index: 2;
+        }
+
+        .mem-card.flipped {
+            border-color: var(--neon-purple);
+            box-shadow: 0 0 22px rgba(192, 132, 252, 0.75);
+        }
+
+        .mem-card.matched {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 24px rgba(52, 211, 153, 0.9);
+        }
+
+        .mem-card.miss-shake {
+            border-color: var(--neon-red);
+            box-shadow: 0 0 22px rgba(251, 113, 133, 0.85);
+            animation: cardShake 0.35s ease;
+        }
+
+        @keyframes cardShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            75% { transform: translateX(6px); }
         }
 
         .timer-badge {
@@ -555,7 +560,6 @@
         .guest-mode { background: #d97706; color: #fff; }
         .live-mode { background: #7c3aed; color: #fff; box-shadow: 0 0 16px rgba(124, 58, 237, 0.65); }
 
-        /* Escaparate de PANGA, ZARED y ZYM */
         .ecosystem-showcase {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -725,7 +729,7 @@
 
     <div class="navbar">
         <div class="logo-area">
-            <img src="https://photos.pinksale.finance/file/pinksale-logo-upload/1791248681417-56c377de956c1c3a7b33918e7ed78ba7.png" alt="Logo">
+            <img src="https://photos.pinksale.finance/file/pinksale-logo-upload/1790285851823-4955b8f5511ea8235af22dfb82371c91.png" alt="Logo">
             <span>ZAARD MEMORY ARENA</span>
         </div>
         <div class="nav-controls">
@@ -739,7 +743,7 @@
     <div id="screenWelcome" class="screen">
         <div class="welcome-card-box">
             <div class="floating-logo-container">
-                <img src="https://photos.pinksale.finance/file/pinksale-logo-upload/1791940828941-906fd2a3d85625f79d066e5b033f6011.png" alt="Logo Memoria" class="floating-logo">
+                <img src="https://photos.pinksale.finance/file/pinksale-logo-upload/1790285851823-4955b8f5511ea8235af22dfb82371c91.png" alt="Logo Memoria" class="floating-logo">
             </div>
             <h1>⚡ ZAARD MEMORY — ARENA ELÉCTRICA DE PARES ⚡</h1>
             <p class="welcome-desc">
@@ -948,18 +952,19 @@
             zym:   { address: "0x3984bd80e73777f2e790892435338d032b987bc7", symbol: "ZYM",   elId: "balanceZym" }
         };
 
-        // MOTOR DE AUDIO (SONIDO DE FONDO, "TULULU" AL ACERTAR Y "PUUU" AL FALLAR)
+        // MOTOR DE AUDIO (SONIDO DE FONDO, GIRO, "TULULU" AL ACERTAR Y "PUUU" AL FALLAR)
         let audioCtx = null;
         let sonidoActivo = true;
         let bgMusicInterval = null;
         let bgStep = 0;
 
         function ensureAudioCtx() {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return null;
             if (!audioCtx) {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (AudioContextClass) audioCtx = new AudioContextClass();
+                audioCtx = new AudioContextClass();
             }
-            if (audioCtx && audioCtx.state === 'suspended') {
+            if (audioCtx.state === 'suspended') {
                 audioCtx.resume().catch(() => {});
             }
             return audioCtx;
@@ -971,18 +976,36 @@
             if (sonidoActivo) {
                 ensureAudioCtx();
                 btn.innerText = "🔊 Sonido ON";
-                if (juegoEnCurso) iniciarMusicaFondo();
+                iniciarMusicaFondo();
             } else {
                 btn.innerText = "🔇 Silencio";
                 detenerMusicaFondo();
             }
         }
 
+        function playFlip() {
+            if (!sonidoActivo) return;
+            const ctx = ensureAudioCtx();
+            if (!ctx) return;
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            const now = ctx.currentTime;
+            osc.frequency.setValueAtTime(340, now);
+            osc.frequency.exponentialRampToValueAtTime(520, now + 0.06);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.exponentialRampToValueAtTime(0.08, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now);
+            osc.stop(now + 0.08);
+        }
+
         function playTululu() {
             if (!sonidoActivo) return;
             const ctx = ensureAudioCtx();
             if (!ctx) return;
-
             const notes = [523.25, 659.25, 783.99, 1046.50]; // tu-lu-lu-u
             notes.forEach((freq, idx) => {
                 const osc = ctx.createOscillator();
@@ -991,12 +1014,12 @@
                 const startT = ctx.currentTime + idx * 0.065;
                 osc.frequency.setValueAtTime(freq, startT);
                 gain.gain.setValueAtTime(0.001, startT);
-                gain.gain.exponentialRampToValueAtTime(0.18, startT + 0.015);
-                gain.gain.exponentialRampToValueAtTime(0.001, startT + 0.14);
+                gain.gain.exponentialRampToValueAtTime(0.2, startT + 0.015);
+                gain.gain.exponentialRampToValueAtTime(0.001, startT + 0.15);
                 osc.connect(gain);
                 gain.connect(ctx.destination);
                 osc.start(startT);
-                osc.stop(startT + 0.15);
+                osc.stop(startT + 0.16);
             });
         }
 
@@ -1004,18 +1027,15 @@
             if (!sonidoActivo) return;
             const ctx = ensureAudioCtx();
             if (!ctx) return;
-
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sawtooth';
             const now = ctx.currentTime;
-            osc.frequency.setValueAtTime(210, now);
-            osc.frequency.exponentialRampToValueAtTime(115, now + 0.36);
-
+            osc.frequency.setValueAtTime(220, now);
+            osc.frequency.exponentialRampToValueAtTime(110, now + 0.36);
             gain.gain.setValueAtTime(0.001, now);
-            gain.gain.exponentialRampToValueAtTime(0.15, now + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.16, now + 0.04);
             gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
-
             osc.connect(gain);
             gain.connect(ctx.destination);
             osc.start(now);
@@ -1026,24 +1046,27 @@
             detenerMusicaFondo();
             if (!sonidoActivo) return;
             ensureAudioCtx();
-            const groove = [130.81, 155.56, 174.61, 196.00, 174.61, 155.56, 196.00, 233.08];
+            const melody = [261.63, 329.63, 392.00, 523.25, 392.00, 349.23, 293.66, 392.00];
             bgMusicInterval = setInterval(() => {
-                if (!sonidoActivo || !juegoEnCurso || !audioCtx) return;
-                const freq = groove[bgStep % groove.length];
+                if (!sonidoActivo || !audioCtx) return;
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume().catch(() => {});
+                }
+                const freq = melody[bgStep % melody.length];
                 bgStep++;
                 const osc = audioCtx.createOscillator();
                 const gain = audioCtx.createGain();
-                osc.type = 'sine';
+                osc.type = 'triangle';
                 const now = audioCtx.currentTime;
                 osc.frequency.setValueAtTime(freq, now);
                 gain.gain.setValueAtTime(0.001, now);
-                gain.gain.exponentialRampToValueAtTime(0.055, now + 0.03);
-                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.28);
+                gain.gain.exponentialRampToValueAtTime(0.055, now + 0.025);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
                 osc.connect(gain);
                 gain.connect(audioCtx.destination);
                 osc.start(now);
-                osc.stop(now + 0.3);
-            }, 340);
+                osc.stop(now + 0.26);
+            }, 310);
         }
 
         function detenerMusicaFondo() {
@@ -1132,19 +1155,20 @@
 
         function iniciarTransicion() {
             ensureAudioCtx();
+            iniciarMusicaFondo();
             document.getElementById('screenWelcome').classList.add('hidden');
             document.getElementById('screenLoading').classList.remove('hidden');
             setTimeout(() => {
                 document.getElementById('screenLoading').classList.add('hidden');
                 document.getElementById('screenArena').classList.remove('hidden');
-                renderizarTablero(false);
+                arrancarCronometroYTablero();
                 if (typeof window.ethereum !== 'undefined' && window.ethereum.selectedAddress) {
                     cuentaConectada = window.ethereum.selectedAddress;
                     const shortAddr = cuentaConectada.substring(0, 6) + "..." + cuentaConectada.substring(cuentaConectada.length - 4);
                     document.getElementById('connectWalletBtn').innerText = "⚡ " + shortAddr;
                     actualizarBalancesEcosistema(cuentaConectada);
                 }
-            }, 1500);
+            }, 1300);
         }
 
         function renderizarTablero(activo) {
@@ -1161,26 +1185,31 @@
                 .sort((a, b) => a.sort - b.sort);
 
             mazo.forEach((carta) => {
-                const cardEl = document.createElement('div');
+                const cardEl = document.createElement('button');
+                cardEl.type = 'button';
                 cardEl.className = 'mem-card';
-                cardEl.dataset.pairId = carta.id;
+                cardEl.dataset.pairId = String(carta.id);
                 cardEl.innerHTML = `
-                    <div class="mem-face mem-back">
+                    <div class="mem-face-back">
                         <img src="${REVERSO_CARTA}" alt="Reverso ZAARD">
                     </div>
-                    <div class="mem-face mem-front">
+                    <div class="mem-face-front">
                         <img src="${carta.img}" alt="Carta ZAARD">
                     </div>
                 `;
-                if (activo) {
-                    cardEl.addEventListener('click', () => voltearCarta(cardEl));
-                }
+                cardEl.addEventListener('click', () => {
+                    if (!juegoEnCurso) {
+                        arrancarCronometroYTablero();
+                    }
+                    voltearCarta(cardEl);
+                });
                 grid.appendChild(cardEl);
             });
         }
 
         function iniciarNuevaPartida() {
             ensureAudioCtx();
+            iniciarMusicaFondo();
             if (modoActual === 'apuesta') {
                 if (!window.ethereum) {
                     conectarDirectoFluido();
@@ -1225,7 +1254,6 @@
                 if (timeLeft <= 0) {
                     clearInterval(intervaloTimer);
                     juegoEnCurso = false;
-                    detenerMusicaFondo();
                     finalizarPartida(false, "⏳ TIEMPO AGOTADO");
                 }
             }, 1000);
@@ -1235,6 +1263,7 @@
             if (!juegoEnCurso || bloqueoTablero) return;
             if (cardEl.classList.contains('flipped') || cardEl.classList.contains('matched')) return;
 
+            playFlip();
             cardEl.classList.add('flipped');
             cartasVolteadas.push(cardEl);
 
@@ -1245,6 +1274,8 @@
                 if (c1.dataset.pairId === c2.dataset.pairId) {
                     // ACIERTO -> TULULU
                     playTululu();
+                    c1.classList.remove('flipped');
+                    c2.classList.remove('flipped');
                     c1.classList.add('matched');
                     c2.classList.add('matched');
                     cartasVolteadas = [];
@@ -1255,7 +1286,6 @@
                     if (paresEncontrados === cartasEnNivel / 2) {
                         clearInterval(intervaloTimer);
                         juegoEnCurso = false;
-                        detenerMusicaFondo();
                         setTimeout(() => finalizarPartida(true, "⚡ ¡VICTORIA EN MEMORY! ⚡"), 450);
                     }
                 } else {
@@ -1277,10 +1307,9 @@
                         if (vidasRestantes <= 0) {
                             clearInterval(intervaloTimer);
                             juegoEnCurso = false;
-                            detenerMusicaFondo();
                             finalizarPartida(false, "💔 SIN VIDAS (10 FALLOS)");
                         }
-                    }, 680);
+                    }, 700);
                 }
             }
         }
