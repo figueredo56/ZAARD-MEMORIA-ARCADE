@@ -353,42 +353,30 @@
             flex-wrap: wrap;
         }
 
-        .level-selector-row {
+        .level-progress-banner {
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 14px;
-            background: rgba(12, 6, 26, 0.88);
-            border: 1px solid rgba(34, 211, 238, 0.35);
+            background: linear-gradient(90deg, rgba(34, 211, 238, 0.14), rgba(147, 51, 234, 0.18));
+            border: 1.5px solid rgba(34, 211, 238, 0.55);
             border-radius: 12px;
-            padding: 10px 14px;
+            padding: 12px 16px;
         }
 
-        .level-pills {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-
-        .lvl-btn {
-            background: rgba(36, 16, 72, 0.9);
-            color: #e9d5ff;
-            border: 1px solid rgba(192, 132, 252, 0.5);
-            padding: 6px 11px;
-            border-radius: 8px;
+        .level-title-glow {
+            font-size: 1.05rem;
             font-weight: 800;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: 0.2s;
+            color: #67e8f9;
+            text-shadow: 0 0 12px rgba(34, 211, 238, 0.5);
         }
 
-        .lvl-btn.active {
-            background: linear-gradient(135deg, #22d3ee, #9333ea);
-            color: #fff;
-            border-color: #fff;
-            box-shadow: 0 0 14px rgba(34, 211, 238, 0.7);
+        .level-roadmap {
+            font-size: 0.82rem;
+            color: #f3e8ff;
+            font-weight: 700;
         }
 
         .stats-bar {
@@ -500,7 +488,6 @@
             display: block;
         }
 
-        /* Estado volteado o acertado */
         .mem-card.flipped .mem-face-back,
         .mem-card.matched .mem-face-back {
             opacity: 0;
@@ -692,7 +679,7 @@
             border-radius: 18px;
             text-align: center;
             width: 90%;
-            max-width: 430px;
+            max-width: 440px;
             box-shadow: 0 0 42px rgba(168, 85, 247, 0.65);
         }
 
@@ -745,19 +732,19 @@
             <div class="floating-logo-container">
                 <img src="https://photos.pinksale.finance/file/pinksale-logo-upload/1790285851823-4955b8f5511ea8235af22dfb82371c91.png" alt="Logo Memoria" class="floating-logo">
             </div>
-            <h1>⚡ ZAARD MEMORY — ARENA ELÉCTRICA DE PARES ⚡</h1>
+            <h1>⚡ ZAARD MEMORY — RUTA DE 7 NIVELES ⚡</h1>
             <p class="welcome-desc">
-                Encuentra todos los pares en tableros de <strong>6, 8, 12, 14, 16, 20, 22 o 24 cartas</strong> con <strong>10 vidas (10 fallas)</strong>. Cada acierto suena <em>tululu</em>, cada fallo suena <em>puuu</em> y la victoria te acerca a <strong>0.001 ZARD</strong>.
+                Supera del <strong>Nivel 1 (6 cartas)</strong> hasta el <strong>Nivel 7 (22 cartas)</strong> con solo <strong>10 oportunidades (10 fallas)</strong> en total. Cada nivel superado te lleva al siguiente hasta conquistar la victoria final de <strong>0.001 ZARD</strong>.
             </p>
             <div class="rules-list-welcome">
                 <ul style="list-style-position: inside;">
-                    <li><strong>Vidas / Fallas:</strong> Tienes <strong>10 oportunidades</strong> por partida (al 10.º fallo termina la ronda).</li>
-                    <li><strong>Niveles de Cartas:</strong> Escala desde <strong>6 cartas</strong> hasta <strong>24 cartas</strong> (8 niveles progresivos).</li>
-                    <li><strong>Apuesta & Premio:</strong> 0.0001 BNB hacia <code>0x84f5...cdc8</code> • Recompensa: <strong>0.001 ZARD</strong> desde Vault <code>0x327f...C1A8</code>.</li>
-                    <li><strong>Ecosistema:</strong> Consulta tus balances en vivo de <strong>PANGA</strong>, <strong>ZARED</strong> y <strong>ZYM</strong> con acceso directo Web3.</li>
+                    <li><strong>Progresión de 7 Niveles:</strong> Nv.1 (6) ➔ Nv.2 (8) ➔ Nv.3 (12) ➔ Nv.4 (14) ➔ Nv.5 (16) ➔ Nv.6 (20) ➔ Nv.7 (22 cartas).</li>
+                    <li><strong>10 Oportunidades:</strong> Tienes <strong>10 fallas</strong> en toda la escalada; si se agotan, es <em>Intento fallido, vuelve a jugar</em>.</li>
+                    <li><strong>Victoria Final:</strong> Al completar el <strong>Nivel 7</strong> sin agotar tus 10 vidas, ganas el desafío y optas por <strong>0.001 ZARD</strong> (Vault: <code>0x327f...C1A8</code>).</li>
+                    <li><strong>Apuesta & Ecosistema:</strong> Entrada 0.0001 BNB hacia <code>0x84f5...cdc8</code> + balances en vivo de <strong>PANGA</strong>, <strong>ZARED</strong> y <strong>ZYM</strong>.</li>
                 </ul>
             </div>
-            <button class="btn-action" onclick="iniciarTransicion()">⚡🧠 ENTRAR A ZAARD MEMORY</button>
+            <button class="btn-action" onclick="iniciarTransicion()">⚡🧠 COMENZAR ESCALADA (NIVEL 1 • 6 CARTAS)</button>
         </div>
     </div>
 
@@ -765,8 +752,8 @@
     <div id="screenLoading" class="screen hidden">
         <div class="loading-box">
             <div class="spinner"></div>
-            <h2 style="color: var(--neon-cyan); margin-bottom: 10px;">⚡ Cargando Arena Memory & Audio...</h2>
-            <p style="color: #d8b4fe;">Preparando cartas de alta energía y contrato pagadero 0x327f...C1A8...</p>
+            <h2 style="color: var(--neon-cyan); margin-bottom: 10px;">⚡ Activando Arena Memory & Audio...</h2>
+            <p style="color: #d8b4fe;">Preparando Nivel 1 (6 cartas) y 10 oportunidades...</p>
         </div>
     </div>
 
@@ -786,48 +773,39 @@
             <div class="card-panel">
                 <div class="payout-pill">
                     <span>🎯 Apuesta: <strong>0.0001 BNB</strong> ➔ <code>0x84f529525fae84b1f1d7ea66939592094426cdc8</code></span>
-                    <span>🏆 Premio: <strong style="color:#34d399;">0.001 ZARD</strong> • Vault: <code>0x327f...C1A8</code></span>
+                    <span>🏆 Premio Final (Nv.7): <strong style="color:#34d399;">0.001 ZARD</strong> • Vault: <code>0x327f...C1A8</code></span>
                 </div>
 
-                <!-- Selector de dificultad: 6, 8, 12, 14, 16, 20, 22, 24 cartas -->
-                <div class="level-selector-row">
-                    <span style="font-size: 0.85rem; font-weight: 800; color: #67e8f9;">⚡ Nivel (Cartas en mesa):</span>
-                    <div class="level-pills" id="levelPills">
-                        <button class="lvl-btn active" data-cards="6" onclick="seleccionarNivel(6, this)">Nv.1 (6)</button>
-                        <button class="lvl-btn" data-cards="8" onclick="seleccionarNivel(8, this)">Nv.2 (8)</button>
-                        <button class="lvl-btn" data-cards="12" onclick="seleccionarNivel(12, this)">Nv.3 (12)</button>
-                        <button class="lvl-btn" data-cards="14" onclick="seleccionarNivel(14, this)">Nv.4 (14)</button>
-                        <button class="lvl-btn" data-cards="16" onclick="seleccionarNivel(16, this)">Nv.5 (16)</button>
-                        <button class="lvl-btn" data-cards="20" onclick="seleccionarNivel(20, this)">Nv.6 (20)</button>
-                        <button class="lvl-btn" data-cards="22" onclick="seleccionarNivel(22, this)">Nv.7 (22)</button>
-                        <button class="lvl-btn" data-cards="24" onclick="seleccionarNivel(24, this)">Nv.8 (24)</button>
-                    </div>
+                <!-- Indicador del nivel actual (1 a 7) -->
+                <div class="level-progress-banner">
+                    <div class="level-title-glow" id="levelBannerTitle">⚡ NIVEL 1 DE 7 — 6 CARTAS (3 PARES)</div>
+                    <div class="level-roadmap" id="levelRoadmapText">6 ➔ 8 ➔ 12 ➔ 14 ➔ 16 ➔ 20 ➔ 22</div>
                 </div>
 
                 <div class="stats-bar">
                     <div class="stat-item">
-                        <div class="stat-label">Vidas (10 Fallas Máx.)</div>
+                        <div class="stat-label">Nivel Actual</div>
+                        <div class="stat-val"><span id="currentLevelNum">1</span> / 7</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Oportunidades (10 Máx.)</div>
                         <div class="stat-val lives-val">❤️ <span id="livesCount">10</span> / 10</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">Pares Encontrados</div>
+                        <div class="stat-label">Pares del Nivel</div>
                         <div class="stat-val"><span id="pairsFound">0</span> / <span id="pairsTotal">3</span></div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-label">Fallos</div>
+                        <div class="stat-label">Fallos Acumulados</div>
                         <div class="stat-val" style="color: #fb7185;"><span id="mistakesCount">0</span> / 10</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Estado</div>
-                        <div class="stat-val" id="gameStatusText" style="font-size: 1rem; color: #34d399;">Listo</div>
                     </div>
                 </div>
 
                 <!-- Tablero de cartas -->
                 <div class="memory-grid cols-3" id="memoryGrid"></div>
 
-                <button class="btn-action" id="btnStartRound" onclick="iniciarNuevaPartida()">
-                    ⚡ COMENZAR PARTIDA (<span id="btnCardCount">6</span> CARTAS • 10 VIDAS)
+                <button class="btn-action" id="btnStartRound" onclick="reiniciarDesafíoCompleto()">
+                    ⚡ REINICIAR DESAFÍO DESDE NIVEL 1 (10 VIDAS)
                 </button>
             </div>
 
@@ -911,12 +889,12 @@
         </div>
     </div>
 
-    <!-- Modal de Resultado -->
+    <!-- Modal de Nivel Superado / Victoria / Intento Fallido -->
     <div id="resultModal" class="result-modal hidden">
         <div class="result-box">
             <h2 id="resultTitle" style="margin-bottom: 14px; color: #34d399;">¡Resultado!</h2>
-            <p id="resultDesc" style="color: #e9d5ff; font-size: 0.95rem; margin-bottom: 20px; line-height: 1.55;"></p>
-            <button class="btn-action" onclick="cerrarModalResultado()">Continuar</button>
+            <p id="resultDesc" style="color: #e9d5ff; font-size: 0.96rem; margin-bottom: 22px; line-height: 1.6;"></p>
+            <button class="btn-action" id="resultModalBtn" onclick="accionModalResultado()">Continuar</button>
         </div>
     </div>
 
@@ -927,10 +905,21 @@
         const PRIZE_ZARD_AMOUNT = "0.001 ZARD";
         const MAX_LIVES = 10;
 
+        // 7 NIVELES PROGRESIVOS: 6, 8, 12, 14, 16, 20, 22 CARTAS
+        const NIVELES_MEMORIA = [
+            { nivel: 1, cartas: 6,  pares: 3,  tiempo: 60 },
+            { nivel: 2, cartas: 8,  pares: 4,  tiempo: 65 },
+            { nivel: 3, cartas: 12, pares: 6,  tiempo: 75 },
+            { nivel: 4, cartas: 14, pares: 7,  tiempo: 80 },
+            { nivel: 5, cartas: 16, pares: 8,  tiempo: 90 },
+            { nivel: 6, cartas: 20, pares: 10, tiempo: 100 },
+            { nivel: 7, cartas: 22, pares: 11, tiempo: 110 }
+        ];
+
         // REVERSO DE LAS CARTAS
         const REVERSO_CARTA = "https://photos.pinksale.finance/file/pinksale-logo-upload/1790285457237-9ad671ea756d64c75327e237813ee288.png";
 
-        // IMÁGENES PARA LOS PARES (HASTA 12 PARES = 24 CARTAS)
+        // IMÁGENES PARA LOS PARES (HASTA 11 PARES = 22 CARTAS)
         const CARTAS_PARES = [
             "https://photos.pinksale.finance/file/pinksale-logo-upload/1790286366724-9003585f30626b9963bd86a5cf26c8ca.png",
             "https://photos.pinksale.finance/file/pinksale-logo-upload/1790286307495-7850b9884619f2e0ccb7358994c11b42.png",
@@ -942,8 +931,7 @@
             "https://photos.pinksale.finance/file/pinksale-logo-upload/1790286563823-5039a28ff802b79aa6069d75b09ad789.png",
             "https://photos.pinksale.finance/file/pinksale-logo-upload/1790287451706-4593a246bbbf27b508770c328ab883c0.png",
             "https://photos.pinksale.finance/file/pinksale-logo-upload/1790288769685-7d9a89bc13043a812c4889cb55ac4a54.png",
-            "https://photos.pinksale.finance/file/pinksale-logo-upload/1790290122445-0077664fb41e21b3aec6f1685fd6ec56.png",
-            "https://photos.pinksale.finance/file/pinksale-logo-upload/1790290143709-10b712b064b3dca0c1a6417000db08e3.png"
+            "https://photos.pinksale.finance/file/pinksale-logo-upload/1790290122445-0077664fb41e21b3aec6f1685fd6ec56.png"
         ];
 
         const ECOSYSTEM_TOKENS = {
@@ -952,7 +940,7 @@
             zym:   { address: "0x3984bd80e73777f2e790892435338d032b987bc7", symbol: "ZYM",   elId: "balanceZym" }
         };
 
-        // MOTOR DE AUDIO (SONIDO DE FONDO, GIRO, "TULULU" AL ACERTAR Y "PUUU" AL FALLAR)
+        // MOTOR DE AUDIO
         let audioCtx = null;
         let sonidoActivo = true;
         let bgMusicInterval = null;
@@ -1078,7 +1066,7 @@
 
         let modoActual = 'invitado';
         let cuentaConectada = null;
-        let cartasEnNivel = 6; // 6, 8, 12, 14, 16, 20, 22, 24
+        let indiceNivelActual = 0; // 0 = Nivel 1 (6 cartas) ... 6 = Nivel 7 (22 cartas)
         let timeLeft = 60;
         let intervaloTimer = null;
         let juegoEnCurso = false;
@@ -1086,16 +1074,7 @@
         let cartasVolteadas = [];
         let paresEncontrados = 0;
         let fallosActuales = 0;
-
-        function seleccionarNivel(cantidadCartas, btnEl) {
-            if (juegoEnCurso) return;
-            cartasEnNivel = cantidadCartas;
-            document.querySelectorAll('.lvl-btn').forEach(b => b.classList.remove('active'));
-            if (btnEl) btnEl.classList.add('active');
-            document.getElementById('pairsTotal').innerText = cartasEnNivel / 2;
-            document.getElementById('btnCardCount').innerText = cartasEnNivel;
-            renderizarTablero(false);
-        }
+        let modalAccionTipo = 'cerrar'; // 'siguiente_nivel' | 'reiniciar'
 
         function conectarDirectoFluido() {
             if (typeof window.ethereum !== 'undefined') {
@@ -1161,24 +1140,90 @@
             setTimeout(() => {
                 document.getElementById('screenLoading').classList.add('hidden');
                 document.getElementById('screenArena').classList.remove('hidden');
-                arrancarCronometroYTablero();
+                if (modoActual === 'apuesta') {
+                    cobrarEntradaYArrancar(0, true);
+                } else {
+                    cargarNivel(0, true);
+                }
                 if (typeof window.ethereum !== 'undefined' && window.ethereum.selectedAddress) {
                     cuentaConectada = window.ethereum.selectedAddress;
                     const shortAddr = cuentaConectada.substring(0, 6) + "..." + cuentaConectada.substring(cuentaConectada.length - 4);
                     document.getElementById('connectWalletBtn').innerText = "⚡ " + shortAddr;
                     actualizarBalancesEcosistema(cuentaConectada);
                 }
-            }, 1300);
+            }, 1200);
         }
 
-        function renderizarTablero(activo) {
+        function reiniciarDesafíoCompleto() {
+            ensureAudioCtx();
+            iniciarMusicaFondo();
+            if (modoActual === 'apuesta') {
+                cobrarEntradaYArrancar(0, true);
+            } else {
+                cargarNivel(0, true);
+            }
+        }
+
+        function cobrarEntradaYArrancar(idxNivel, resetearVidas) {
+            if (!window.ethereum) {
+                conectarDirectoFluido();
+                return;
+            }
+            const txParams = {
+                to: WALLET_CREADORA,
+                from: cuentaConectada || window.ethereum.selectedAddress,
+                value: BET_WEI_HEX
+            };
+            window.ethereum.request({ method: 'eth_sendTransaction', params: [txParams] })
+                .then(() => cargarNivel(idxNivel, resetearVidas))
+                .catch(() => alert("Transacción cancelada."));
+        }
+
+        function cargarNivel(idxNivel, resetearVidas) {
+            clearInterval(intervaloTimer);
+            indiceNivelActual = idxNivel;
+            const cfg = NIVELES_MEMORIA[indiceNivelActual];
+
+            if (resetearVidas) {
+                fallosActuales = 0;
+            }
+
+            timeLeft = cfg.tiempo;
+            paresEncontrados = 0;
+            cartasVolteadas = [];
+            bloqueoTablero = false;
+            juegoEnCurso = true;
+
+            const vidasRestantes = Math.max(0, MAX_LIVES - fallosActuales);
+
+            document.getElementById('levelBannerTitle').innerText = `⚡ NIVEL ${cfg.nivel} DE 7 — ${cfg.cartas} CARTAS (${cfg.pares} PARES)`;
+            document.getElementById('currentLevelNum').innerText = cfg.nivel;
+            document.getElementById('countdown').innerText = timeLeft;
+            document.getElementById('pairsFound').innerText = paresEncontrados;
+            document.getElementById('pairsTotal').innerText = cfg.pares;
+            document.getElementById('mistakesCount').innerText = fallosActuales;
+            document.getElementById('livesCount').innerText = vidasRestantes;
+
+            renderizarTablero(cfg.cartas, cfg.pares);
+
+            intervaloTimer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('countdown').innerText = timeLeft;
+                if (timeLeft <= 0) {
+                    clearInterval(intervaloTimer);
+                    juegoEnCurso = false;
+                    mostrarIntentoFallido("⏳ TIEMPO AGOTADO", "Se acabó el tiempo antes de completar el nivel.");
+                }
+            }, 1000);
+        }
+
+        function renderizarTablero(cantidadCartas, numPares) {
             const grid = document.getElementById('memoryGrid');
             grid.className = 'memory-grid';
-            if (cartasEnNivel === 6) grid.classList.add('cols-3');
-            if (cartasEnNivel >= 18) grid.classList.add('cols-6');
+            if (cantidadCartas === 6) grid.classList.add('cols-3');
+            if (cantidadCartas >= 18) grid.classList.add('cols-6');
 
             grid.innerHTML = '';
-            const numPares = cartasEnNivel / 2;
             const poolBarajado = [...CARTAS_PARES].sort(() => Math.random() - 0.5).slice(0, numPares);
             const mazo = [...poolBarajado, ...poolBarajado]
                 .map((img, idx) => ({ id: idx % numPares, img, sort: Math.random() }))
@@ -1197,66 +1242,9 @@
                         <img src="${carta.img}" alt="Carta ZAARD">
                     </div>
                 `;
-                cardEl.addEventListener('click', () => {
-                    if (!juegoEnCurso) {
-                        arrancarCronometroYTablero();
-                    }
-                    voltearCarta(cardEl);
-                });
+                cardEl.addEventListener('click', () => voltearCarta(cardEl));
                 grid.appendChild(cardEl);
             });
-        }
-
-        function iniciarNuevaPartida() {
-            ensureAudioCtx();
-            iniciarMusicaFondo();
-            if (modoActual === 'apuesta') {
-                if (!window.ethereum) {
-                    conectarDirectoFluido();
-                    return;
-                }
-                const txParams = {
-                    to: WALLET_CREADORA,
-                    from: cuentaConectada || window.ethereum.selectedAddress,
-                    value: BET_WEI_HEX
-                };
-                window.ethereum.request({ method: 'eth_sendTransaction', params: [txParams] })
-                    .then(() => arrancarCronometroYTablero())
-                    .catch(() => alert("Transacción cancelada."));
-            } else {
-                arrancarCronometroYTablero();
-            }
-        }
-
-        function arrancarCronometroYTablero() {
-            clearInterval(intervaloTimer);
-            timeLeft = 60;
-            paresEncontrados = 0;
-            fallosActuales = 0;
-            cartasVolteadas = [];
-            bloqueoTablero = false;
-            juegoEnCurso = true;
-
-            document.getElementById('countdown').innerText = timeLeft;
-            document.getElementById('pairsFound').innerText = paresEncontrados;
-            document.getElementById('pairsTotal').innerText = cartasEnNivel / 2;
-            document.getElementById('mistakesCount').innerText = fallosActuales;
-            document.getElementById('livesCount').innerText = MAX_LIVES;
-            document.getElementById('gameStatusText').innerText = "En Juego ⚡";
-            document.getElementById('gameStatusText').style.color = "#22d3ee";
-
-            renderizarTablero(true);
-            iniciarMusicaFondo();
-
-            intervaloTimer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('countdown').innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(intervaloTimer);
-                    juegoEnCurso = false;
-                    finalizarPartida(false, "⏳ TIEMPO AGOTADO");
-                }
-            }, 1000);
         }
 
         function voltearCarta(cardEl) {
@@ -1270,6 +1258,7 @@
             if (cartasVolteadas.length === 2) {
                 bloqueoTablero = true;
                 const [c1, c2] = cartasVolteadas;
+                const cfg = NIVELES_MEMORIA[indiceNivelActual];
 
                 if (c1.dataset.pairId === c2.dataset.pairId) {
                     // ACIERTO -> TULULU
@@ -1283,13 +1272,13 @@
                     paresEncontrados++;
                     document.getElementById('pairsFound').innerText = paresEncontrados;
 
-                    if (paresEncontrados === cartasEnNivel / 2) {
+                    if (paresEncontrados === cfg.pares) {
                         clearInterval(intervaloTimer);
                         juegoEnCurso = false;
-                        setTimeout(() => finalizarPartida(true, "⚡ ¡VICTORIA EN MEMORY! ⚡"), 450);
+                        setTimeout(() => completarNivelActual(cfg), 450);
                     }
                 } else {
-                    // FALLO -> PUUU Y RESTA 1 VIDA (HASTA 10 VIDAS)
+                    // FALLO -> PUUU Y RESTA 1 OPORTUNIDAD (DE 10)
                     playPuuu();
                     fallosActuales++;
                     const vidasRestantes = Math.max(0, MAX_LIVES - fallosActuales);
@@ -1307,36 +1296,64 @@
                         if (vidasRestantes <= 0) {
                             clearInterval(intervaloTimer);
                             juegoEnCurso = false;
-                            finalizarPartida(false, "💔 SIN VIDAS (10 FALLOS)");
+                            mostrarIntentoFallido(
+                                "❌ INTENTO FALLIDO",
+                                "Se agotaron tus 10 oportunidades. ¡Vuelve a jugar desde el Nivel 1!"
+                            );
                         }
                     }, 700);
                 }
             }
         }
 
-        function finalizarPartida(gano, tituloTexto) {
+        function completarNivelActual(cfg) {
             const modal = document.getElementById('resultModal');
             const title = document.getElementById('resultTitle');
             const desc = document.getElementById('resultDesc');
+            const btn = document.getElementById('resultModalBtn');
+            const vidasRestantes = Math.max(0, MAX_LIVES - fallosActuales);
 
-            if (gano) {
-                document.getElementById('gameStatusText').innerText = "¡Victoria!";
-                document.getElementById('gameStatusText').style.color = "#34d399";
-                title.style.color = "#34d399";
-                title.innerText = tituloTexto;
-                desc.innerHTML = `Completaste las <strong>${cartasEnNivel} cartas</strong> con <strong>${fallosActuales} fallos</strong> y <strong>${timeLeft}s</strong> restantes.<br>Recompensa: <strong>${PRIZE_ZARD_AMOUNT}</strong>.<br><small style="color:#67e8f9;">Contrato Pagadero: <code>${ZAARD_VAULT_CONTRACT}</code></small>`;
+            if (indiceNivelActual < NIVELES_MEMORIA.length - 1) {
+                const siguiente = NIVELES_MEMORIA[indiceNivelActual + 1];
+                modalAccionTipo = 'siguiente_nivel';
+                title.style.color = "#22d3ee";
+                title.innerText = `⚡ ¡FELICITACIONES! SUPERASTE EL NIVEL ${cfg.nivel} ⚡`;
+                desc.innerHTML = `Completaste las <strong>${cfg.cartas} cartas</strong> manteniendo <strong>${vidasRestantes} de 10 oportunidades</strong>.<br>Prepárate para el <strong>Nivel ${siguiente.nivel} (${siguiente.cartas} cartas)</strong>.`;
+                btn.innerText = `⚡ IR AL NIVEL ${siguiente.nivel} (${siguiente.cartas} CARTAS) ➔`;
             } else {
-                document.getElementById('gameStatusText').innerText = "Sin Vidas / Fin";
-                document.getElementById('gameStatusText').style.color = "#fb7185";
-                title.style.color = "#fb7185";
-                title.innerText = tituloTexto;
-                desc.innerHTML = `Encontraste <strong>${paresEncontrados} de ${cartasEnNivel / 2} pares</strong> con <strong>${fallosActuales}/10 fallos</strong>. ¡Inténtalo de nuevo!`;
+                // COMPLETO TODOS LOS 7 NIVELES SIN AGOTAR LAS 10 OPORTUNIDADES
+                modalAccionTipo = 'reiniciar';
+                title.style.color = "#34d399";
+                title.innerText = "🏆 ¡FELICITACIONES! CONQUISTASTE LOS 7 NIVELES 🏆";
+                desc.innerHTML = `Superaste desde el Nivel 1 hasta el <strong>Nivel 7 (22 cartas)</strong> con <strong>${vidasRestantes} oportunidades restantes</strong>.<br>Recompensa: <strong>${PRIZE_ZARD_AMOUNT}</strong>.<br><small style="color:#67e8f9;">Contrato Pagadero: <code>${ZAARD_VAULT_CONTRACT}</code></small>`;
+                btn.innerText = "⚡ JUGAR NUEVO DESAFÍO DESDE NIVEL 1";
             }
+
             modal.classList.remove('hidden');
         }
 
-        function cerrarModalResultado() {
+        function mostrarIntentoFallido(tituloTexto, detalleTexto) {
+            playPuuu();
+            const modal = document.getElementById('resultModal');
+            const title = document.getElementById('resultTitle');
+            const desc = document.getElementById('resultDesc');
+            const btn = document.getElementById('resultModalBtn');
+
+            modalAccionTipo = 'reiniciar';
+            title.style.color = "#fb7185";
+            title.innerText = tituloTexto;
+            desc.innerHTML = `${detalleTexto}<br><span style="color:#c4b5fd; font-size:0.86rem;">Llegaste al Nivel ${indiceNivelActual + 1} de 7.</span>`;
+            btn.innerText = "🔄 INTENTO FALLIDO • VUELVE A JUGAR";
+            modal.classList.remove('hidden');
+        }
+
+        function accionModalResultado() {
             document.getElementById('resultModal').classList.add('hidden');
+            if (modalAccionTipo === 'siguiente_nivel') {
+                cargarNivel(indiceNivelActual + 1, false);
+            } else {
+                reiniciarDesafíoCompleto();
+            }
         }
 
         function abrirSelectorBilletera() {
