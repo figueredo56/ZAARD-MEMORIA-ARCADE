@@ -411,13 +411,156 @@
             text-shadow: 0 0 12px rgba(244, 114, 182, 0.65);
         }
 
+        /* CUADRO GALÁCTICO CON CAMBIO DE COLOR CADA 30s + ÓRBITAS */
+        .galactic-stage {
+            position: relative;
+            border-radius: 20px;
+            padding: 20px 14px;
+            margin-bottom: 18px;
+            overflow: hidden;
+            border: 2px solid var(--gal-accent, #c084fc);
+            background: var(--gal-bg, radial-gradient(circle at 25% 25%, rgba(168, 85, 247, 0.42), rgba(18, 6, 42, 0.95) 65%, rgba(5, 2, 14, 0.99)));
+            box-shadow: 0 0 36px var(--gal-glow, rgba(192, 132, 252, 0.45)), inset 0 0 35px rgba(255, 255, 255, 0.06);
+            transition: background 1.2s ease, border-color 1.2s ease, box-shadow 1.2s ease;
+        }
+
+        .galactic-stage.theme-purple {
+            --gal-accent: #c084fc;
+            --gal-glow: rgba(192, 132, 252, 0.5);
+            --gal-bg: radial-gradient(circle at 20% 25%, rgba(168, 85, 247, 0.46), rgba(32, 8, 68, 0.92) 60%, rgba(7, 2, 18, 0.98));
+        }
+
+        .galactic-stage.theme-blue {
+            --gal-accent: #22d3ee;
+            --gal-glow: rgba(34, 211, 238, 0.52);
+            --gal-bg: radial-gradient(circle at 75% 25%, rgba(34, 211, 238, 0.42), rgba(10, 32, 74, 0.92) 60%, rgba(4, 10, 26, 0.98));
+        }
+
+        .galactic-stage.theme-green {
+            --gal-accent: #34d399;
+            --gal-glow: rgba(52, 211, 153, 0.48);
+            --gal-bg: radial-gradient(circle at 30% 75%, rgba(52, 211, 153, 0.38), rgba(6, 54, 46, 0.92) 62%, rgba(3, 18, 16, 0.98));
+        }
+
+        .galactic-stage.theme-cosmic {
+            --gal-accent: #f472b6;
+            --gal-glow: rgba(244, 114, 182, 0.5);
+            --gal-bg: radial-gradient(circle at 65% 70%, rgba(244, 114, 182, 0.4), rgba(62, 14, 68, 0.92) 62%, rgba(12, 3, 20, 0.98));
+        }
+
+        .galaxy-orbit-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            border-radius: 50%;
+            border: 1.5px dashed var(--gal-accent, #c084fc);
+            opacity: 0.32;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit-ring.r1 {
+            width: 260px;
+            height: 260px;
+            animation: orbitSpinCW 16s linear infinite;
+        }
+
+        .orbit-ring.r2 {
+            width: 440px;
+            height: 440px;
+            border-style: dotted;
+            animation: orbitSpinCCW 26s linear infinite;
+        }
+
+        .orbit-ring.r3 {
+            width: 620px;
+            height: 620px;
+            opacity: 0.2;
+            animation: orbitSpinCW 38s linear infinite;
+        }
+
+        .orbit-planet {
+            position: absolute;
+            top: -7px;
+            left: 50%;
+            width: 14px;
+            height: 14px;
+            margin-left: -7px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 14px var(--gal-accent, #22d3ee), 0 0 26px var(--gal-accent, #c084fc);
+        }
+
+        .orbit-star {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 8px #fff, 0 0 14px var(--gal-accent, #22d3ee);
+            animation: starTwinkle 2.4s infinite alternate ease-in-out;
+        }
+
+        .orbit-star.st1 { top: 12%; left: 14%; animation-delay: 0s; }
+        .orbit-star.st2 { top: 20%; right: 16%; animation-delay: 0.6s; }
+        .orbit-star.st3 { bottom: 16%; left: 20%; animation-delay: 1.2s; }
+        .orbit-star.st4 { bottom: 22%; right: 12%; animation-delay: 1.8s; }
+        .orbit-star.st5 { top: 52%; left: 8%; animation-delay: 0.9s; }
+        .orbit-star.st6 { top: 48%; right: 8%; animation-delay: 1.5s; }
+
+        @keyframes orbitSpinCW {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes orbitSpinCCW {
+            from { transform: translate(-50%, -50%) rotate(360deg); }
+            to { transform: translate(-50%, -50%) rotate(0deg); }
+        }
+
+        @keyframes starTwinkle {
+            0% { transform: scale(0.6); opacity: 0.35; }
+            100% { transform: scale(1.5); opacity: 1; }
+        }
+
+        .galaxy-badge-row {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+            font-size: 0.78rem;
+            color: #f3e8ff;
+        }
+
+        .galaxy-color-pill {
+            background: rgba(8, 4, 20, 0.72);
+            border: 1px solid var(--gal-accent, #c084fc);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-weight: 700;
+            color: #fff;
+        }
+
         /* TABLERO DE MEMORIA A PRUEBA DE MÓVIL */
         .memory-grid {
+            position: relative;
+            z-index: 2;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 12px;
             max-width: 720px;
-            margin: 0 auto 20px auto;
+            margin: 0 auto;
         }
 
         .memory-grid.cols-3 {
@@ -523,17 +666,6 @@
             0%, 100% { transform: translateX(0); }
             25% { transform: translateX(-6px); }
             75% { transform: translateX(6px); }
-        }
-
-        .timer-badge {
-            background: rgba(46, 16, 101, 0.92);
-            color: #67e8f9;
-            padding: 6px 14px;
-            border-radius: 8px;
-            font-weight: 800;
-            font-size: 0.95rem;
-            border: 1px solid rgba(34, 211, 238, 0.55);
-            box-shadow: 0 0 14px rgba(34, 211, 238, 0.3);
         }
 
         .mode-badge {
@@ -734,14 +866,14 @@
             </div>
             <h1>⚡ ZAARD MEMORY — RUTA DE 7 NIVELES ⚡</h1>
             <p class="welcome-desc">
-                Supera del <strong>Nivel 1 (6 cartas)</strong> hasta el <strong>Nivel 7 (22 cartas)</strong> con solo <strong>10 oportunidades (10 fallas)</strong> en total. Cada nivel superado te lleva al siguiente hasta conquistar la victoria final de <strong>0.001 ZARD</strong>.
+                Sin reloj ni estrés: avanza desde el <strong>Nivel 1 (6 cartas)</strong> hasta el <strong>Nivel 7 (22 cartas)</strong> con <strong>10 oportunidades (10 fallas)</strong> en un cuadro galáctico que cambia de color cada 30 segundos.
             </p>
             <div class="rules-list-welcome">
                 <ul style="list-style-position: inside;">
                     <li><strong>Progresión de 7 Niveles:</strong> Nv.1 (6) ➔ Nv.2 (8) ➔ Nv.3 (12) ➔ Nv.4 (14) ➔ Nv.5 (16) ➔ Nv.6 (20) ➔ Nv.7 (22 cartas).</li>
-                    <li><strong>10 Oportunidades:</strong> Tienes <strong>10 fallas</strong> en toda la escalada; si se agotan, es <em>Intento fallido, vuelve a jugar</em>.</li>
-                    <li><strong>Victoria Final:</strong> Al completar el <strong>Nivel 7</strong> sin agotar tus 10 vidas, ganas el desafío y optas por <strong>0.001 ZARD</strong> (Vault: <code>0x327f...C1A8</code>).</li>
-                    <li><strong>Apuesta & Ecosistema:</strong> Entrada 0.0001 BNB hacia <code>0x84f5...cdc8</code> + balances en vivo de <strong>PANGA</strong>, <strong>ZARED</strong> y <strong>ZYM</strong>.</li>
+                    <li><strong>10 Oportunidades:</strong> Tienes <strong>10 fallas</strong>; si se agotan, sale <em>Intento fallido, vuelve a jugar</em>.</li>
+                    <li><strong>Sin Límite de Tiempo:</strong> Juega a tu ritmo y concentra tu mente entre las órbitas galácticas.</li>
+                    <li><strong>Victoria Final:</strong> Al superar el <strong>Nivel 7</strong> sin agotar tus 10 vidas, ganas y optas por <strong>0.001 ZARD</strong> (Vault: <code>0x327f...C1A8</code>).</li>
                 </ul>
             </div>
             <button class="btn-action" onclick="iniciarTransicion()">⚡🧠 COMENZAR ESCALADA (NIVEL 1 • 6 CARTAS)</button>
@@ -752,7 +884,7 @@
     <div id="screenLoading" class="screen hidden">
         <div class="loading-box">
             <div class="spinner"></div>
-            <h2 style="color: var(--neon-cyan); margin-bottom: 10px;">⚡ Activando Arena Memory & Audio...</h2>
+            <h2 style="color: var(--neon-cyan); margin-bottom: 10px;">⚡ Activando Galaxia Memory & Audio...</h2>
             <p style="color: #d8b4fe;">Preparando Nivel 1 (6 cartas) y 10 oportunidades...</p>
         </div>
     </div>
@@ -764,7 +896,6 @@
                 <span id="badgeMode" class="mode-badge guest-mode">Modo Invitado (Práctica Libre)</span>
             </div>
             <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
-                <div class="timer-badge">⏳ Tiempo: <span id="countdown">60</span>s</div>
                 <button onclick="cambiarModo()" class="btn-wallet" id="btnSwitchMode" style="font-size: 0.85rem; padding: 7px 14px;">Activar Modo Apuesta</button>
             </div>
         </div>
@@ -801,10 +932,30 @@
                     </div>
                 </div>
 
-                <!-- Tablero de cartas -->
-                <div class="memory-grid cols-3" id="memoryGrid"></div>
+                <!-- Cuadro Galáctico con cambio de color cada 30s y órbitas -->
+                <div class="galactic-stage theme-purple" id="galacticStage">
+                    <div class="galaxy-orbit-layer">
+                        <div class="orbit-ring r1"><div class="orbit-planet"></div></div>
+                        <div class="orbit-ring r2"><div class="orbit-planet"></div></div>
+                        <div class="orbit-ring r3"></div>
+                        <div class="orbit-star st1"></div>
+                        <div class="orbit-star st2"></div>
+                        <div class="orbit-star st3"></div>
+                        <div class="orbit-star st4"></div>
+                        <div class="orbit-star st5"></div>
+                        <div class="orbit-star st6"></div>
+                    </div>
 
-                <button class="btn-action" id="btnStartRound" onclick="reiniciarDesafíoCompleto()">
+                    <div class="galaxy-badge-row">
+                        <span class="galaxy-color-pill" id="galaxyThemeLabel">🌌 Nebulosa Morada</span>
+                        <span style="opacity: 0.85;">🪐 Órbitas activas • Cambia cada 30s</span>
+                    </div>
+
+                    <!-- Tablero de cartas -->
+                    <div class="memory-grid cols-3" id="memoryGrid"></div>
+                </div>
+
+                <button class="btn-action" id="btnStartRound" onclick="reiniciarDesafioCompleto()">
                     ⚡ REINICIAR DESAFÍO DESDE NIVEL 1 (10 VIDAS)
                 </button>
             </div>
@@ -905,15 +1056,23 @@
         const PRIZE_ZARD_AMOUNT = "0.001 ZARD";
         const MAX_LIVES = 10;
 
-        // 7 NIVELES PROGRESIVOS: 6, 8, 12, 14, 16, 20, 22 CARTAS
+        // 7 NIVELES PROGRESIVOS SIN LÍMITE DE TIEMPO: 6, 8, 12, 14, 16, 20, 22 CARTAS
         const NIVELES_MEMORIA = [
-            { nivel: 1, cartas: 6,  pares: 3,  tiempo: 60 },
-            { nivel: 2, cartas: 8,  pares: 4,  tiempo: 65 },
-            { nivel: 3, cartas: 12, pares: 6,  tiempo: 75 },
-            { nivel: 4, cartas: 14, pares: 7,  tiempo: 80 },
-            { nivel: 5, cartas: 16, pares: 8,  tiempo: 90 },
-            { nivel: 6, cartas: 20, pares: 10, tiempo: 100 },
-            { nivel: 7, cartas: 22, pares: 11, tiempo: 110 }
+            { nivel: 1, cartas: 6,  pares: 3  },
+            { nivel: 2, cartas: 8,  pares: 4  },
+            { nivel: 3, cartas: 12, pares: 6  },
+            { nivel: 4, cartas: 14, pares: 7  },
+            { nivel: 5, cartas: 16, pares: 8  },
+            { nivel: 6, cartas: 20, pares: 10 },
+            { nivel: 7, cartas: 22, pares: 11 }
+        ];
+
+        // COLORES GALÁCTICOS QUE ROTAN CADA 30 SEGUNDOS
+        const TEMAS_GALACTICOS = [
+            { clase: "theme-purple", texto: "🌌 Nebulosa Morada" },
+            { clase: "theme-blue",   texto: "🌊 Galaxia Azul Eléctrica" },
+            { clase: "theme-green",  texto: "🌿 Aurora Verde Cósmica" },
+            { clase: "theme-cosmic", texto: "🌸 Supernova Rosa Violeta" }
         ];
 
         // REVERSO DE LAS CARTAS
@@ -1043,7 +1202,7 @@
                 const freq = melody[bgStep % melody.length];
                 bgStep++;
                 const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
+                const gain = ctxGain(audioCtx);
                 osc.type = 'triangle';
                 const now = audioCtx.currentTime;
                 osc.frequency.setValueAtTime(freq, now);
@@ -1057,6 +1216,10 @@
             }, 310);
         }
 
+        function ctxGain(ctx) {
+            return ctx.createGain();
+        }
+
         function detenerMusicaFondo() {
             if (bgMusicInterval) {
                 clearInterval(bgMusicInterval);
@@ -1064,17 +1227,38 @@
             }
         }
 
+        // ROTACIÓN DE COLOR GALÁCTICO CADA 30 SEGUNDOS
+        let indiceTemaGalactico = 0;
+        let intervaloGalaxia = null;
+
+        function aplicarTemaGalactico(idx) {
+            const stage = document.getElementById('galacticStage');
+            const label = document.getElementById('galaxyThemeLabel');
+            if (!stage || !label) return;
+            const tema = TEMAS_GALACTICOS[idx % TEMAS_GALACTICOS.length];
+            stage.classList.remove(...TEMAS_GALACTICOS.map(t => t.clase));
+            stage.classList.add(tema.clase);
+            label.innerText = tema.texto;
+        }
+
+        function iniciarCicloGalactico30s() {
+            if (intervaloGalaxia) clearInterval(intervaloGalaxia);
+            aplicarTemaGalactico(indiceTemaGalactico);
+            intervaloGalaxia = setInterval(() => {
+                indiceTemaGalactico = (indiceTemaGalactico + 1) % TEMAS_GALACTICOS.length;
+                aplicarTemaGalactico(indiceTemaGalactico);
+            }, 30000);
+        }
+
         let modoActual = 'invitado';
         let cuentaConectada = null;
         let indiceNivelActual = 0; // 0 = Nivel 1 (6 cartas) ... 6 = Nivel 7 (22 cartas)
-        let timeLeft = 60;
-        let intervaloTimer = null;
         let juegoEnCurso = false;
         let bloqueoTablero = false;
         let cartasVolteadas = [];
         let paresEncontrados = 0;
         let fallosActuales = 0;
-        let modalAccionTipo = 'cerrar'; // 'siguiente_nivel' | 'reiniciar'
+        let modalAccionTipo = 'cerrar';
 
         function conectarDirectoFluido() {
             if (typeof window.ethereum !== 'undefined') {
@@ -1140,6 +1324,7 @@
             setTimeout(() => {
                 document.getElementById('screenLoading').classList.add('hidden');
                 document.getElementById('screenArena').classList.remove('hidden');
+                iniciarCicloGalactico30s();
                 if (modoActual === 'apuesta') {
                     cobrarEntradaYArrancar(0, true);
                 } else {
@@ -1154,7 +1339,7 @@
             }, 1200);
         }
 
-        function reiniciarDesafíoCompleto() {
+        function reiniciarDesafioCompleto() {
             ensureAudioCtx();
             iniciarMusicaFondo();
             if (modoActual === 'apuesta') {
@@ -1180,7 +1365,6 @@
         }
 
         function cargarNivel(idxNivel, resetearVidas) {
-            clearInterval(intervaloTimer);
             indiceNivelActual = idxNivel;
             const cfg = NIVELES_MEMORIA[indiceNivelActual];
 
@@ -1188,7 +1372,6 @@
                 fallosActuales = 0;
             }
 
-            timeLeft = cfg.tiempo;
             paresEncontrados = 0;
             cartasVolteadas = [];
             bloqueoTablero = false;
@@ -1198,23 +1381,12 @@
 
             document.getElementById('levelBannerTitle').innerText = `⚡ NIVEL ${cfg.nivel} DE 7 — ${cfg.cartas} CARTAS (${cfg.pares} PARES)`;
             document.getElementById('currentLevelNum').innerText = cfg.nivel;
-            document.getElementById('countdown').innerText = timeLeft;
             document.getElementById('pairsFound').innerText = paresEncontrados;
             document.getElementById('pairsTotal').innerText = cfg.pares;
             document.getElementById('mistakesCount').innerText = fallosActuales;
             document.getElementById('livesCount').innerText = vidasRestantes;
 
             renderizarTablero(cfg.cartas, cfg.pares);
-
-            intervaloTimer = setInterval(() => {
-                timeLeft--;
-                document.getElementById('countdown').innerText = timeLeft;
-                if (timeLeft <= 0) {
-                    clearInterval(intervaloTimer);
-                    juegoEnCurso = false;
-                    mostrarIntentoFallido("⏳ TIEMPO AGOTADO", "Se acabó el tiempo antes de completar el nivel.");
-                }
-            }, 1000);
         }
 
         function renderizarTablero(cantidadCartas, numPares) {
@@ -1273,7 +1445,6 @@
                     document.getElementById('pairsFound').innerText = paresEncontrados;
 
                     if (paresEncontrados === cfg.pares) {
-                        clearInterval(intervaloTimer);
                         juegoEnCurso = false;
                         setTimeout(() => completarNivelActual(cfg), 450);
                     }
@@ -1294,7 +1465,6 @@
                         bloqueoTablero = false;
 
                         if (vidasRestantes <= 0) {
-                            clearInterval(intervaloTimer);
                             juegoEnCurso = false;
                             mostrarIntentoFallido(
                                 "❌ INTENTO FALLIDO",
@@ -1321,7 +1491,6 @@
                 desc.innerHTML = `Completaste las <strong>${cfg.cartas} cartas</strong> manteniendo <strong>${vidasRestantes} de 10 oportunidades</strong>.<br>Prepárate para el <strong>Nivel ${siguiente.nivel} (${siguiente.cartas} cartas)</strong>.`;
                 btn.innerText = `⚡ IR AL NIVEL ${siguiente.nivel} (${siguiente.cartas} CARTAS) ➔`;
             } else {
-                // COMPLETO TODOS LOS 7 NIVELES SIN AGOTAR LAS 10 OPORTUNIDADES
                 modalAccionTipo = 'reiniciar';
                 title.style.color = "#34d399";
                 title.innerText = "🏆 ¡FELICITACIONES! CONQUISTASTE LOS 7 NIVELES 🏆";
@@ -1352,7 +1521,7 @@
             if (modalAccionTipo === 'siguiente_nivel') {
                 cargarNivel(indiceNivelActual + 1, false);
             } else {
-                reiniciarDesafíoCompleto();
+                reiniciarDesafioCompleto();
             }
         }
 
